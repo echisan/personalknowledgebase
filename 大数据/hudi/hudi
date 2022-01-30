@@ -1,0 +1,6 @@
+# hudi
+
+![img](https://raw.githubusercontent.com/echisan/fiweofjaawef/main/img/3c0a2c044aeca16e4209e7d0ec0bc244.png)
+
+Uber 团队在 Hudi 上同时实现了 Copy On Write 和 Merge On Read 的两种数据格式，其中 Merge On Read 就是为了解决他们的 fast upsert 而设计的
+
