@@ -13,6 +13,12 @@ mvn archetype:generate                \
   -DarchetypeVersion=1.13.6
 ```
 
+inline
+
+```
+mvn archetype:generate -DarchetypeGroupId=org.apache.flink  -DarchetypeArtifactId=flink-quickstart-java  -DarchetypeVersion=1.13.6
+```
+
 
 
 

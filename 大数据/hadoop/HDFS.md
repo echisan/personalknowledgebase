@@ -6,6 +6,10 @@
 
 ![image-20210902114331203](https://raw.githubusercontent.com/echisan/fiweofjaawef/main/img/image-20210902114331203.png)
 
+![image-20220302150321728](https://raw.githubusercontent.com/echisan/fiweofjaawef/main/img/image-20220302150321728.png)
+
+![image-20220302150329596](https://raw.githubusercontent.com/echisan/fiweofjaawef/main/img/image-20220302150329596.png)s
+
 ### 节点距离计算
 
 HDFS写数据的过程中，NameNode会选择距离待上传数据最近距离的DataNode接收数据
