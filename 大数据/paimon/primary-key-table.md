@@ -344,6 +344,36 @@ Flink还具有内置的“normalize”运算符，它会在状态中持久保存
 
 ![changelog-producer-none.png](changelog-producer-none.png)
 
+
+#### Testing
+
+```sql
+
+CREATE CATALOG paimon_local_catalog WITH (
+     'type'='paimon',
+     'warehouse'='file:///home/heygears/dev/flink/catalog/paimon'
+ );
+
+use catalog paimon_local_catalog;
+    
+create table T (
+    id int,
+    name varchar,
+  primary key (`id`) not enforced
+)
+with(
+    'changelog-producer' = 'none'
+  );
+insert into T values (1, 'hello'),
+                     (2, 'world');
+
+set 'sql-client.execution.result-mode' = 'tableau';
+select * from T; 
+-- output +I,1,hello; +I,2,world
+insert into T values (2, 'huawei');
+```
+
+
 ### Input
 
 指定 `'changelog-producer' = 'input'`使用，Paimon 写入者依赖它们的输入作为完整 changelog 的来源。
@@ -373,6 +403,23 @@ Flink还具有内置的“normalize”运算符，它会在状态中持久保存
 Lookup changelog-producer支持通过配置`changelog-producer.row-deduplicate`以避免为相同记录生成`-U`,`+U`的changelog
 
 > 注意: 提高`execution.checkpointing.max-concurrent-checkpoints`可以提升lookup性能
+
+Testing
+```sql
+create table L (
+    id int,
+    name varchar,
+  primary key (`id`) not enforced
+)
+with(
+    'changelog-producer' = 'lookup'
+  );
+insert into L values (1, 'hello'),
+                     (2, 'world');
+select * from L;
+-- output +I,1,hello; +I,2,world
+insert into L values (2, 'huawei');
+```
 
 ### Full Compaction
 
