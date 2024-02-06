@@ -214,18 +214,22 @@ snapshot中的watermark是由writer生成的。
 paimon表写数据时，paimon表的snapshot会生成相应的watermark，这样就可以在流读中使用有界的watermark功能。
 
 ```sql
-CREATE TABLE kafka_table (
-    `user` BIGINT,
-    product STRING,
+CREATE TABLE kafka_table
+(
+    `user`     BIGINT,
+    product    STRING,
     order_time TIMESTAMP(3),
     WATERMARK FOR order_time AS order_time - INTERVAL '5' SECOND
 ) WITH ('connector' = 'kafka'...);
 
 -- launch a streaming insert job
-INSERT INTO paimon_table SELECT * FROM kakfa_table;
+INSERT INTO paimon_table
+SELECT *
+FROM kakfa_table;
 
 -- launch a bounded streaming job to read paimon_table
-SELECT * FROM paimon_table /*+ OPTIONS('scan.bounded.watermark'='...') */;
+SELECT *
+FROM paimon_table /*+ OPTIONS('scan.bounded.watermark'='...') */;
 ```
 
 ### Example
