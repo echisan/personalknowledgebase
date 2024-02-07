@@ -351,7 +351,7 @@ Flink还具有内置的“normalize”运算符，它会在状态中持久保存
 
 CREATE CATALOG paimon_local_catalog WITH (
      'type'='paimon',
-     'warehouse'='file:///home/heygears/dev/flink/catalog/paimon'
+     'warehouse'='file:///tmp/paimon'
  );
 
 use catalog paimon_local_catalog;
