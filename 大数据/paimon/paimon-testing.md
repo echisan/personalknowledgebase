@@ -277,7 +277,3 @@ Flink SQL> select * from CNT/*+OPTIONS('scan.mode'='from-snapshot-full', 'scan.s
 ```
 
 
-
-
-
-
